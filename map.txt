@@ -1,31 +1,19 @@
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW            
-WCSW     W                             W
-W  W  W  W                             W
-W     W  WWWWWWW                       W
-WWWWWWW  W   WCW                       W
-WCCCWC   W W   W                       W
-W   E      W                           W
-WWWWWWWWWWWWWW                         W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-W                                      W
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWW            
+WCCCC                E WCW
+WCWWWWWWW U      WW WWWWCW
+WCW  C  W  WWWWWCCW   CCCW
+WCW  W FW  WU CWWWWWWWWW W
+W W  WWWW  W WCW     C   W
+W W        W WCW   WWWWWWW
+W WWWWWWW WW WWWWWWW    CW
+W         WS CW      WWWWW
+WWW W WWWWWW WW  W W   CCW
+W W W WCCCCW W   W WWWWWWW
+W W W W        W     C   W
+W W W W WWWWWWWWWWWWWWW  W
+W   W W   C    W      CCCW
+WWW W WWWWWWWW W WWWWWWWWW
+WCC        EW  W WCWCWCWCW
+W        CWCCCCW        EW
+WWWWWWWWWWWWWWWWWWWWWWWWWW
 
