@@ -143,6 +143,9 @@ finish = False
 clock = time.Clock()
 
 def set_difficulty(value, difficulty):
+    if finish:
+        level('map.txt')
+
     new_speed = 3
     
     if difficulty == 1:
@@ -155,8 +158,16 @@ def set_difficulty(value, difficulty):
         e.speed = new_speed
 
 def restart():
+    global finish, walls, enemys, coins
     menu.disable()
+    level('map.txt')
+
+def level(filemap):
+    global finish, walls, enemys, coins
     finish = False
+    walls = []
+    enemys = []
+    coins = []
     with open('map.txt', 'r') as file:
         x, y = 0, 0
         map = file.readlines()
@@ -181,6 +192,8 @@ def restart():
                 x += 30
             y += 30
             x = 0
+
+
 
 def start_the_game():
     menu.disable()
@@ -243,6 +256,7 @@ while run:
             if re == 43:
                 finish = True
                 result = font1.render('YOU WIN'  , True, (210, 150, 100))
+                level('map2.txt')
             
     else:
         window.blit(result, (450, 400))
