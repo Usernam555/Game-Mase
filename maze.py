@@ -111,7 +111,7 @@ player = Player('w1.png', 40 , 350, 30, 30)
 gold = GameSprite('key1.png', WIDTH - 100 , 420, 30, 30)
 walls = []
 enemys = []
-enems = []
+
 coins = []
 with open('map.txt', 'r') as file:
     x, y = 0, 0
@@ -143,29 +143,71 @@ finish = False
 clock = time.Clock()
 
 def set_difficulty(value, difficulty):
-    # Do the job here !
-    pass
+    new_speed = 3
+    
+    if difficulty == 1:
+        new_speed = 1
+
+    elif difficulty == 2:
+        new_speed = 2
+
+    for e in enemys:
+        e.speed = new_speed
+
+def restart():
+    menu.disable()
+    finish = False
+    with open('map.txt', 'r') as file:
+        x, y = 0, 0
+        map = file.readlines()
+        for line in map:
+            for symbol in line:
+                if symbol == 'W':
+                    walls.append(Wall(x, y))
+                elif symbol == 'S':
+                    player.rect.x = x
+                    player.rect.y = y
+                elif symbol == 'F':
+                    gold.rect.x = x
+                    gold.rect.y = y
+                elif symbol == 'E':
+                    enemys.append(Enemy(x, y))
+                elif symbol == 'U':
+                    enemys.append(Enem(x, y))
+                elif symbol == 'C':
+                    coins.append(Coin(x + 7.5, y + 7.5))
+            
+                
+                x += 30
+            y += 30
+            x = 0
 
 def start_the_game():
-    # Do the job here !
-    pass
+    menu.disable()
 
-menu = pygame_menu.Menu('Welcome', 1200, 900,
-                       theme=pygame_menu.themes.THEME_BLUE)
+menu = pygame_menu.Menu('Меню', 1200, 900,
+                       theme=pygame_menu.themes.THEME_GREEN)
 
-menu.add.text_input('Name :', default='John Doe')
-menu.add.selector('Difficulty :', [('Hard', 1), ('Easy', 2)], onchange=set_difficulty)
+
+menu.add.selector('Difficulty :', [('Hard', 2), ('Easy', 1)], onchange=set_difficulty)
 menu.add.button('Play', start_the_game)
+menu.add.button('Restart', restart)
 menu.add.button('Quit', pygame_menu.events.EXIT)
 font.init()
 font1 = font.SysFont('Impact', 70)
 result = font1.render('YOU LOSE' , True, (140, 100, 30))
+menu.mainloop(window)
 
 while run:
 
     for e in event.get():
         if e.type == QUIT:
             run = False
+        if e.type == KEYDOWN:
+            if e.key == K_ESCAPE:
+                menu.enable()
+                menu.mainloop(window)
+
     if not finish:
 
         player.update()
@@ -182,13 +224,12 @@ while run:
             e.update(walls)
             e.draw()
             if sprite.collide_rect(player, e):
-                finish = True  
+                finish = True
+                menu.enable()
+                menu.mainloop(window)
+  
 
-        for e in enems:
-            e.update(walls)
-            e.draw()
-            if sprite.collide_rect(player, e):
-                finish = True 
+        
 
         for c in coins:
             c.draw() 
