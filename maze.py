@@ -16,11 +16,11 @@ window = display.set_mode((WIDTH, HEIGHT))
 
 mixer.music.load('jungles.ogg')
 mixer.music.play()
-mixer.music.set_volume(0.01)
+mixer.music.set_volume(0.5)
 kick = mixer.Sound('kick.ogg')
 kick.play()
 re = 0
-
+l = 1
 #задай фон сцени
 display.set_caption('Лабіринт')
 
@@ -113,7 +113,7 @@ walls = []
 enemys = []
 
 coins = []
-with open('map.txt', 'r') as file:
+with open("map.txt", 'r') as file:
     x, y = 0, 0
     map = file.readlines()
     for line in map:
@@ -168,7 +168,7 @@ def level(filemap):
     walls = []
     enemys = []
     coins = []
-    with open('map.txt', 'r') as file:
+    with open(filemap, 'r') as file:
         x, y = 0, 0
         map = file.readlines()
         for line in map:
@@ -196,6 +196,8 @@ def level(filemap):
 
 
 def start_the_game():
+    if finish:
+        level('map.txt')
     menu.disable()
 
 menu = pygame_menu.Menu('Меню', 1200, 900,
@@ -253,10 +255,15 @@ while run:
                   
 
         if sprite.collide_rect(player, gold):
-            if re == 43:
-                finish = True
-                result = font1.render('YOU WIN'  , True, (210, 150, 100))
-                level('map2.txt')
+            #if len(coins) == 0:
+                if l == 1:
+                    level('map2.txt')
+                elif l == 2:
+                    level('map3.txt')
+                elif l == 3:
+                    finish = True
+                    result = font1.render('YOU WIN'  , True, (210, 150, 100))
+                l += 1
             
     else:
         window.blit(result, (450, 400))
